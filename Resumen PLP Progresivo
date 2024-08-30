@@ -1,0 +1,32 @@
+Programacion Funcional: colecciones de funciones
+
+/////// CLASE 2 ////
+Razonamiento: queremos demostrar que expresiones son iguales,
+Para trabajar con la tesis: trbajamos con estructuras de datos finitas, funciones totales(ecuaciones cubren todos los casos y la recursion termina) y el programa no depende del orden de las operaciones
+
+Igualdades por definicion: 
+Principio de reemplazo: tomar cualquier instancia de una expresion y poder reemplazarla por cualquier instancia de la otra expresion. Podemos nombrar las instancias para que sea mas claro cual estamos reemplazando
+
+Induccion sobre Booleanos: not True = False y not False = True. Luego podemos probar las inducciones individualmente para not (not (True)) y not (not(False))
+
+Ppo de induccion sobre pares: ptdo= (para todo) ptdo x :: a. ptdo y::b. P((x,y)) entonces ptdo p::(a,b). P(p) donde P es alguna propiedad para el tipo de dato sobre el que queremos mostrar la induccion.
+
+Ppo de induccion sobre naturales: si vale P(Zero) y ptdo n :: Nat( P(n)/hptsis ind./ -> P(Suc (n)/tesis ind/)) entonces ptdo n :: Nat P(n)
+
+Ppo de induccion estructural: sea t un tipo de datos inductivos, P vale sobre todos los constructores de T y P vale sobre todos los constructores recursivos de T vale ptdo x:: T P(x)
+
+Extensionalidad: existe el elem de tipo de dato inductivo que cumple P(elem)
+
+Pto de vista intensional: las dos expresiones son iguales si estan definidos de la misma manera
+Pto de vista extensional: las dos expresiones son iguales si son indistinguibles al observarlas
+
+Ppo de extensionalidad funcional: sean f, g :: ab -> b entonces si ptod x:: a f x = g x entonces f = g
+
+Correccion respecto a observaciones: si demostramos e1 = e2::A  entonces obs e1 reduce a True si y solo si e2 reduce a True. Para desigualdades necesitamos que al menos una de las dos reduzca a False
+
+Isomorfisma de tipos: A y B son isomorfos si y solo si:
+hay una funcion f :: A -> B 
+hay una funcion g :: B -> A 
+vale que g.f = id :: A -> A 
+vale que f.g = id :: B -> B
+ A ≃ B indica isomorfismo
