@@ -22,3 +22,9 @@ Recursion iterativa:: toma un acumulador y va actualizando su valor hasta llegar
 foldl::(b -> a -> b) -> b -> [a] -> b
 foldl _ ac [] = ac
 foldl f ac x:xs = foldl f (f ac x ) xs
+--------------------RAZONAMIENTO ECUACIONAL E INDUCCION ESTRUCTURAL-----------------------------------------------------
+No hay tanto para decir de esto, no asumir nada, usar lemas y tener claro cuales y cuantos son los casos base e inductivos respectivamente.
+La extensionalidad ayuda a separar en casos, listas es la vacia y la que tiene un head, booleanos True o False, Nat es Zero o Succ(Nat),... todo lo que sea una
+propiedad debe enunciarse como P(q) con para todo Q, se pueden no escribir siempre pero aclarar que estan considerados los cuantificadores. La extensionalidad
+funcional dice que dos funciones son iguales si para todo x::a, f,g:: a-> b, f x= g x
+--------------------INTERPRETES DE ARCHIVOS-------------------------------------------------------------------------------
