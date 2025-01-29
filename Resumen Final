@@ -8,3 +8,17 @@ Uncurry f (a,b) = f a b
 Notacion Lambda: para definir funciones anonimas, \ -> (no hace falta tiparla, pero hay que cuidar que sea correcta)
 Composicion de Funciones: (.):: (a -> b) -> (c -> a) -> c -> b 
 Map:: (a -> b) -> [a] -> [b] toma una funcion y se la aplica a una lista y te devuelve lista de aplicar esa funcion a todos los elementos de la lista.
+Filter:: (a -> Bool) -> [a] -> [a]
+Filter p (x:xs) = if p x then x : filter p xs else filter p xs
+----------RECURSION ----------
+Recursion estructural: el caso base devuelve un valor fijo Z, el caso recursivo usa una funcion sobre la cabeza de la lista y no usa el tail mas que para el llamado
+recursivo
+Foldr:: (a -> b -> b) -> [a] -> b
+foldr f z [] = []
+foldr f z x:xs = f x (foldr f z xs) 
+Recursion primitiva: caso base devuelve valor fijo Z, caso recursivo puede referenciar a la cola de la lista ademas de en el llamado recursivo.
+Recr:: (a -> [a] -> b ->  b) -> b -> [a] -> b
+Recursion iterativa:: toma un acumulador y va actualizando su valor hasta llegar al caso base y lo devuelve actualizado.
+foldl::(b -> a -> b) -> b -> [a] -> b
+foldl _ ac [] = ac
+foldl f ac x:xs = foldl f (f ac x ) xs
