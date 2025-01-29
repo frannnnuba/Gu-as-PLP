@@ -27,4 +27,16 @@ No hay tanto para decir de esto, no asumir nada, usar lemas y tener claro cuales
 La extensionalidad ayuda a separar en casos, listas es la vacia y la que tiene un head, booleanos True o False, Nat es Zero o Succ(Nat),... todo lo que sea una
 propiedad debe enunciarse como P(q) con para todo Q, se pueden no escribir siempre pero aclarar que estan considerados los cuantificadores. La extensionalidad
 funcional dice que dos funciones son iguales si para todo x::a, f,g:: a-> b, f x= g x
---------------------INTERPRETES DE ARCHIVOS-------------------------------------------------------------------------------
+--------------------INTERPRETES-------------------------------------------------------------------------------
+se definen distintos tipos de datos y hay que ver como hacer para que evaluar programas nos deje obtener distintos tipos de resultados como Nat, Booleanos, Expresiones etc.. 
+usa mucho los cases of o va haciendo pattern matching con los tipos de datos. No vimos practica de esto asi que leer la teorica y chau.
+----------------SISTEMAS DEDUCTIVOS Y DEDUCCION NATURAL-----------------------------------------------------------
+Notacion: la implicacion asocia a derecha, las (∧, ∨) no son asociativos ni conmutativos. Eliminar el bottom seguido de la eliminacion de la negacion no ayuda casi nunca
+Los principios clasicos solo cuando te dan permiso si no no. Fijarse que hay en el contexto que sirva para probar. A veces la eliminacion del O puede servir.
+-----------------CALCULO LAMBDA------------------------------------------------------------------------------------
+La sintaxis de los tipos: bool o τ → σ, el constructor de tipos → es asociativo a derecha.
+Los terminos pueden ser: variables, abstracciones,aplicaciones,true,false,if M then N else P. Las aplicaciones asocian a izquierda y tienen mayor precedencia que la abstraccion
+y el if.
+Tipado: consiste en, cuando se pide un juicio de tipado, poder dar los tipos que tienen los terminos en una expresion. Mirar las tablitas y dar las reglas de tipado solo de lo que piden
+o es nuevo en el lambda extendido. Cuidar la unicidad de tipos
+
