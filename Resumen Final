@@ -37,6 +37,15 @@ Los principios clasicos solo cuando te dan permiso si no no. Fijarse que hay en 
 La sintaxis de los tipos: bool o τ → σ, el constructor de tipos → es asociativo a derecha.
 Los terminos pueden ser: variables, abstracciones,aplicaciones,true,false,if M then N else P. Las aplicaciones asocian a izquierda y tienen mayor precedencia que la abstraccion
 y el if.
-Tipado: consiste en, cuando se pide un juicio de tipado, poder dar los tipos que tienen los terminos en una expresion. Mirar las tablitas y dar las reglas de tipado solo de lo que piden
+Reglas de Tipado: consiste en, cuando se pide un juicio de tipado, poder dar los tipos que tienen los terminos en una expresion. Mirar las tablitas y dar las reglas de tipado solo de lo que piden
 o es nuevo en el lambda extendido. Cuidar la unicidad de tipos
-
+Semantica operacional: dice como se ejecuta un programa hasta llegar a un resultado.
+Semantica small-step: ejecucion paso a paso. Un programa es un termino M tipable y cerrado(sin variables libres)
+Juicios de evaluacion: M → N  donde M y N son programas
+Hay que definir el conjunto de valores que seran posibles resultado de evaluar programas (true/false/abstraccion...)
+Reglas de Congruencia: si M -> N, entonces tiene que no perder determinismo (no puede reducir por mas de una regla) ni prorgeso
+(o bien M es un valor o bien existe N tal que M → N). si tengo por ej MP -> NP, y si la otra es VM -> VN no pueden 
+algunos no ser valores
+Reglas de computo: indican que termino o valor tiene como resultado una expresion si se hace una cierta operacion o se cumple
+cierta precondicion en un if cosas asi.Si queremos que algo falle no le escribimos regla o explicitamos el fallo.
+Cuando se trabaja con valores hay que hacer y aclarar la sustitucion en el termino que obtendremos de respuesta.
