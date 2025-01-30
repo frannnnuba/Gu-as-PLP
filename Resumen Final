@@ -49,3 +49,24 @@ algunos no ser valores
 Reglas de computo: indican que termino o valor tiene como resultado una expresion si se hace una cierta operacion o se cumple
 cierta precondicion en un if cosas asi.Si queremos que algo falle no le escribimos regla o explicitamos el fallo.
 Cuando se trabaja con valores hay que hacer y aclarar la sustitucion en el termino que obtendremos de respuesta.
+---------------------Correspondecia Curry-Howard------------------------------------------------
+Basicamente consiste en que se puede traducir las reglas de tipado a reglas de DN, se sacan los terminos y se dejan los tipos
+el constructor de tipos σ → τ se puede leer como una implicacion σ ⇒ τ.Una formula puede tener mas de una prueba,
+Corte(cut): es una afirmacion intermedio(lema) aunque no sea una subformula de la afirmacion final (metes un galerazo para
+probar lo que tenes ganas basicamente) y queda de tarea demostrar el lema.Suele ser una introduccion del implica seguido
+de una eliminacion del implica.Para eliminar el corte reemplazamos el termino que introdujimos y lo reemplazamos por su prueba
+Conjuncion: es medio lo mismo, introducis las reglas de tipado dejas los tipos y pasas a DN. Los cortes son el elemento del par
+que no estaba como afirmacion final.
+Seguia pero me dio paja.
+-------------------------INFERENCIA DE TIPOS-------------------------------------
+Los terminos ahora no tienen tipos, hay que hacer el arbol de inferencia y ver si las variables ya existian en el contexto
+o darles variables de tipo frescas. Seguir los pasos que te diga para el tipo de dato y sobre todo hacer el mgu y cuidar de
+ver si falla o no, para ello podemos reducir el mgu con los siguientes pasos o nos indica si falla:
+Delete-eliminacion trivial
+Decompose (sobre todo funciones o cosas iguales a ambos lados y se quiere ver termino a termino)
+Swap: te permite dar vuelta la unificacion, util sobre todo si vas a hacer una eliminacion y tenes las cosas al reves de lo que necesitas
+Elim: siempre y cuando no rompa otras cosas, la eliminacion es como una sustitucion, "donde estaba este Xn ahora va este tipo 
+ya que unificaron".
+Clash: si no dan la cantidad exacta de terminos, si aparecen cosas tipo Nat ?= Bool, F(x1....) ?= G(...) los constructores
+son distintos(las funciones) asi que no unificara.
+Occur-Check: si Xn ?= t falla si Xn =/ t y Xn ocurre en t (basicamente X1 ?= X1 -> X2)
