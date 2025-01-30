@@ -70,3 +70,10 @@ ya que unificaron".
 Clash: si no dan la cantidad exacta de terminos, si aparecen cosas tipo Nat ?= Bool, F(x1....) ?= G(...) los constructores
 son distintos(las funciones) asi que no unificara.
 Occur-Check: si Xn ?= t falla si Xn =/ t y Xn ocurre en t (basicamente X1 ?= X1 -> X2)
+Algoritmo de unificacion Martelli-Montanari: dado un conjunto de ecuaciones a unificar E, mientras E no sea vacio aplicar alguna
+de las 6 reglas de arriba para reducir a E' que sea mas chica hasta llegar al conj vacio, caso contrario deberia fallar pero no deberia haber una
+cadena infinita de pasos de reduccion.
+Algoritmo W: recibe un termino sin tipar, puede fallar o devolver una tripla (Γ, M, τ ) donde W(u) si tiene exito devuelve
+W(U) ⇝ Γ ⊢ M : τ.
+Cuando se hace el arbol se usa el algo W, cuidar que sea lo que se nos pide estrictamente y no repetir variables frescas, 
+arrancar desde abajo y subir. Si medio a ojo se ve que puede fallar probar primero esa rama.
