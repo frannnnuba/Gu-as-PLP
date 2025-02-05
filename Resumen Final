@@ -13,7 +13,7 @@ Filter p (x:xs) = if p x then x : filter p xs else filter p xs
 ----------RECURSION ----------
 Recursion estructural: el caso base devuelve un valor fijo Z, el caso recursivo usa una funcion sobre la cabeza de la lista y no usa el tail mas que para el llamado
 recursivo
-Foldr:: (a -> b -> b) -> [a] -> b
+Foldr:: (a -> b -> b) -> b -> [a] -> b
 foldr f z [] = []
 foldr f z x:xs = f x (foldr f z xs) 
 Recursion primitiva: caso base devuelve valor fijo Z, caso recursivo puede referenciar a la cola de la lista ademas de en el llamado recursivo.
