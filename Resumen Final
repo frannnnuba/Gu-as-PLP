@@ -107,7 +107,7 @@ El metodo de resolucion devuelve insat solo si C0 llega a clausula vacia y termi
 Resolucion para logica de primer order: la dif con el anterior es que este puede colgarse si la formula es invalida, si es valida
 seguro termina.
 Los primeros dos pasos son iguales, luego :
-3) es sacar los cuantificadores existenciales hacia fuera
+3) es sacar los cuantificadores para todo/ existenciales hacia fuera
 Lo que tenemos hasta aca se conoce como forma normal prenexa
 4) Skolemnizar: sacamos los existenciales por testigos. Si el literal solo toma a la variable cuantificada se introduce un
 testigo para reemplazarlo; si el literal dependiera de otras variables libres(del literal) sera entonces una funcion que tome
@@ -117,4 +117,36 @@ LA SKOLEMNIZACION PRESERVA SATISFACIBILIDAD; NO VALIDEZ
 5) Distribuir ∨ sobre ∧
 6) Empujar los cuantificadores hacia adentro y distribuirlos sobre los ∧
 RECORDAR QUE LAS VARIABLES POR MAS NOMBRE IGUAL SIEMPRE  SON DISTINTAS ENTRE CLAUSULAS, constantes pueden ser la misma
-
+Para que la refutacion sea valida hay que hacer el mgu entre terminos. Al hacer el MGU SIEMPRE se sustituyen variables, no vale
+sustituir constantes por variables, ni funciones por constantes etc etc, solo sacar variables al estilo X1 := const, otra var, predicados,etc
+la resolucion binaria (la que se usaba hasta aca) no es completa pues solo nos deja comparar de a un literal, esto
+puede llevar a que si bien una formula es valida nunca lo podamos demostrar ya que nunca terminaria de unificar etc
+Dado un conj de clausulas C0, el pasaje a forma clausal termina Y el algo retorna insat solo si C0 valua bottom, caso
+contrario puede no terminar.
+++++++++++++++++++++++++++RESOLUCION SLD+++++++++++++++++++++++++++++++++++++++++++++++++
+Para que una resolucion sea SLD tiene que ser: todas clausulas de Horn, siempre usa una clausula objetivo, 
+ser lineal(usar siempre el resultado de la resolucion anterior y que esta sea goal), seleccion binaria(elijo al que tenga
+el literal pos y neg en cada clausula). Para justificar que una resolucion fue SLD decir que partes cumplen con la def, no
+decir la definicion y ya.
+Clausulas de Horn: uno o menos literales postivos, nunca mas.
+Clausulas Goal: no tiene literales positivos
+Clausulas definicion tienen 1 literal positivo. Hay clausulas que no pueden ser escritas como clausulas de Horn
+Las derivaciones SLD es tomar el conj de clausulas Goal y definicion e ir haciendo el arbolito de como llega a INSAT
+La resolucion SLD es completa, si la formula es insat entonces existe una refutacion SLD.
+Semantica de Prolog:un programa en Prolog es una lsita de clausulas definicion, mientras que una consulta es una clausula Goal
+El orden de los literales el la clausula Goal(o consulta) es importante ya que se elige el primer literal para resolucion.
+Prolog busca las refutaciones con DFS, usando las reglas a medida que aparecen.La busqueda DFS es incompleta ya que Prolog 
+busca todos los resultados no importa si ya encontro/demostro una vez, lo que puede hacer que se cuelgue(pensar en suc(Zero))
+PROLOG NO CONTEMPLA DIRECTAMENTE OCCURS CHECK. BFS es completa pero mas costosa, prolog usa DFS
+Reversibilidad: prolog permite chequear la reversibilidad cuando esta tipado con ?, la reversibilidad tambien da pie a la
+generacion infinita (si pido los suc de zero, o listas con el desde)
+Cut: tiene exito siempre, al momento de hacer backtracking se vuelve hasta el paso que hizo aparecer el cut y se descartan las
+opciones alternativas, si se puede se vuelve para atraz y continua el backtracking sin explorar esa rama. Hay cuts que no alteran
+la semantica(ejemplo suma) y otros que dañan el resultado (ejemplo maximo entre dos num viendo solo la cond y no res).
+En el grafico si bien sabemos da exito inmediato sigue graficando lo que viene en la misma consulta del cut (quizas por unificar)
+pero no hace el backtracking sobre que pasaba si no entraba esa regla (? A,!,B,C reduce a ? !,B,C esta reduce a ? B,C...)
+hasta terminar (si termina) luego pasa directo a lo que estaba antes de A,!,B,C y no backtrackea a que hubiera pasado 
+si no entraba A etc.
+El fail falla siempre, permite hacer la negacion por falla (que no es igual a negacion logica).
+La negacion por falla se demuestra dando false a cosas (por ej not(fruta(papa))) mientras que la negacion logica nos permite
+mas declaratividad (not (fruta(papa)),verdura(papa))
