@@ -77,3 +77,44 @@ Algoritmo W: recibe un termino sin tipar, puede fallar o devolver una tripla (Γ
 W(U) ⇝ Γ ⊢ M : τ.
 Cuando se hace el arbol se usa el algo W, cuidar que sea lo que se nos pide estrictamente y no repetir variables frescas, 
 arrancar desde abajo y subir. Si medio a ojo se ve que puede fallar probar primero esa rama.
+-------------------LOGICA DE PRIMER ORDEN-----------------------------------------------------------------------------------
+La idea es armar todo en clausulas, se logra satisfacer las formulas o se refuta (se puede colgar pero etc). A la logica prop
+se le agregan cuantificadores existe/para todo X.
+Unas estructura de primer orden es un par M(M,I) donde M es un conj no vacio, I una funcion que da interpretacion a cada simbolo
+Para cada sımbolo de funcion f de aridad n:I(f) : M(elevado)n → M
+Para cada sımbolo de predicado P de aridad n: I(P) ⊆ M(elvado)n
+Logicamente se agregan nuevas reglas para la DN con cuantificadores.
+Sea a una asignacion a:X -> M, una fomrula es:
+Valida: si a valua M para todo M,a 
+Satisfacible: si a valua m para al menos un M,a
+Invalida: si a no valua M para algun M,a
+Insatisfacible: si a no valua M para ningun M,a
+La unificacion es igual salvo con pequeños ajustes para los cuantificadores en el Elim. 
+++++++++++++PROLOG++++++++++++++++++++++++++
+Prolog opera con reglas, donde las que son de aridad 0 se llaman hechos.Las reglas estan cuantificadas por para todos, y 
+las consultas por existensiales. Busca probar la formula τ refutando ¬τ-
+Resolucion para logica proposicional: 
+Se toma C el conjunto de clausulas, para pasar una formula a conj de clausulas hay 3 pasos en orden:
+1 implica como negacion del antecedente O consecuente
+2 empujar el/los ¬ hacia adentro
+lo que tenemos hasta aca se llama fornma normal negada
+3 Distribuir ∨ sobre ∧
+Formulas en CNF σcnf ::= (κ1 ∧ κ2 ∧ . . . ∧ κn)
+Clausulas κ ::= (ℓ1 ∨ ℓ2 ∨ . . . ∨ ℓm)
+Literales ℓ ::= P | ¬P
+Luego, se hace la resolvente buscando llegar a la clausula vacia lo cual determina ¬t valua insat por lo tanto t es valida
+El metodo de resolucion devuelve insat solo si C0 llega a clausula vacia y termina(a lo sumo hay 2 elev n). 
+Resolucion para logica de primer order: la dif con el anterior es que este puede colgarse si la formula es invalida, si es valida
+seguro termina.
+Los primeros dos pasos son iguales, luego :
+3) es sacar los cuantificadores existenciales hacia fuera
+Lo que tenemos hasta aca se conoce como forma normal prenexa
+4) Skolemnizar: sacamos los existenciales por testigos. Si el literal solo toma a la variable cuantificada se introduce un
+testigo para reemplazarlo; si el literal dependiera de otras variables libres(del literal) sera entonces una funcion que tome
+como parametros las demas variables que quedaron. Por esto es mejor skolemnizar desde afuera hacia adentro para evitar tener 
+funciones de aridad muy grande
+LA SKOLEMNIZACION PRESERVA SATISFACIBILIDAD; NO VALIDEZ
+5) Distribuir ∨ sobre ∧
+6) Empujar los cuantificadores hacia adentro y distribuirlos sobre los ∧
+RECORDAR QUE LAS VARIABLES POR MAS NOMBRE IGUAL SIEMPRE  SON DISTINTAS ENTRE CLAUSULAS, constantes pueden ser la misma
+
