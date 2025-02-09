@@ -150,3 +150,26 @@ si no entraba A etc.
 El fail falla siempre, permite hacer la negacion por falla (que no es igual a negacion logica).
 La negacion por falla se demuestra dando false a cosas (por ej not(fruta(papa))) mientras que la negacion logica nos permite
 mas declaratividad (not (fruta(papa)),verdura(papa))
+-----------------------------------POO-------------------------------------------------------------------
+En POO hay OBJETOS que se comunican entre si con MENSAJES (es eso basicamente, despues estan los bloque y clases etc).
+La interfaz es el cjto de mensajes que un objeto sabe responder, y los metodos son los procedimientos como tal.
+Encapsulamiento: solo se puede interactuar con un objeto a travez de la interfaz, el estado interno del objeto es inaccesible
+desde el exterior.Consecuencias: alternar entre dos representaciones de una misma entidad no altera el comportamiento visible
+(basicamente no importa su  implementacion si no que responda como se espera) es en si ocultar el como esta hecho. Duck-typing:
+un objeto se puede intercambiar por otro siempre que implemente la misma interfaz.
+Todos los objetos son instancia de alguan clase: una clase es un objeto que abstrae el comportamiento que tienen en comun 
+todas sus instancias, todas las instancias de una clase tienen los mismos atributos y usan el mismo metodo para responder a
+un mensaje especifico.
+Las subclases heredan los metodos de sus superclases y pueden optar por reemplazar un metodo si quisieran por uno mas esp.
+Clases abstractas: no se van a instanciar, estan para abstraer los metodos que van a usar sus subclases unicamente. Ej clase Numbre
+Precedencia de mensajes: unarios > binarios > keywords (:). Si hay una cadena de mensajes de misma precedencia (1+2*3) smalltalk
+no sabe de precedencia matematica entonces va a hacer (1 +2) * 3, cuidar eso.
+Las variables locales van entre ||, los mensajes se encadenan con (;), hay seis palabras reservadas: nil, true, false,
+self, super, thisContext. Caracteres: $, simbolos: #, strings: 'texto'.
+Los bloques ejecutan comandos, pueden tener o no parametros. Si tienen parametros se los escribe :X1 ... Xn, luego para evaluar
+un bloque sin parametros solamente se escribe value, si tiene parametros value : arg1 value: arg2 ... value: argn donde los n 
+seran los valores pasados por parametro.
+Super indica que, desde self, se debe buscar el mensaje M a partir de su superclase (incluso si self lo tiene def).
+Method dispatch: O: objeto al que se le envia msj, S: selector del mensaje que se desea enviar, C: clase en la que se desea 
+buscar el metodo. Procedimiento: si C define un metodo M para S, devolver M; si no sea C' la superclase de C: si C' es nil
+devolver notUnderstood, caso contrario C:= C' y volver a paso 1.
