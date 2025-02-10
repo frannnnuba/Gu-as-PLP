@@ -37,6 +37,7 @@ Los principios clasicos solo cuando te dan permiso si no no. Fijarse que hay en 
 La sintaxis de los tipos: bool o τ → σ, el constructor de tipos → es asociativo a derecha.
 Los terminos pueden ser: variables, abstracciones,aplicaciones,true,false,if M then N else P. Las aplicaciones asocian a izquierda y tienen mayor precedencia que la abstraccion
 y el if.
+Una expresion esta en forma normal si no puede reducir mas.
 Reglas de Tipado: consiste en, cuando se pide un juicio de tipado, poder dar los tipos que tienen los terminos en una expresion. Mirar las tablitas y dar las reglas de tipado solo de lo que piden
 o es nuevo en el lambda extendido. Cuidar la unicidad de tipos
 Semantica operacional: dice como se ejecuta un programa hasta llegar a un resultado.
