@@ -174,3 +174,9 @@ Super indica que, desde self, se debe buscar el mensaje M a partir de su supercl
 Method dispatch: O: objeto al que se le envia msj, S: selector del mensaje que se desea enviar, C: clase en la que se desea 
 buscar el metodo. Procedimiento: si C define un metodo M para S, devolver M; si no sea C' la superclase de C: si C' es nil
 devolver notUnderstood, caso contrario C:= C' y volver a paso 1.
+Colecciones: Bag(multiconjunto),Set(conj),Array,OrderedCollection(lista),SortedCollection(lista ordenada),Dictionary(Hash).
+El mensaje with: permite crear estas colecciones( bag with: 1 with 2 == (1,2))
+Mensajes comunes: add, at: , at: put:, includes: , includesKey:, do: (evalua un bloque con c/elem de una coleccion),
+select:(filter, devuelve los que cumplen una condicion),reject:,detect:, detect: ifNone:.
+Boolean tiene dos subclases: True y False.
+Los metodos de Boolean: ifTrue:, ifFalse:, ifTrue: ifFalse:,&,|,and:,or:,not
