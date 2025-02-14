@@ -1,0 +1,28 @@
+++++++++++++++++Prolog+++++++++++
+%subCreciente(+X,-S)
+subCreciente([],[]).
+subCreciente([X|XS],[X|S]):- subCreciente(XS,S), listaCreciente(X,S).
+subCreciente([_|XS],S):- subCreciente(XS,S).
+
+%listaCreciente(+X,+S)
+listaCreciente(_,[]).
+listaCreciente(X,[Y|YS]):- X <Y, listaCreciente(X,YS).
+
+%subCrecMasLarga(+L,-S)
+subCrecMasLarga(X,S):- subCreciente(X,S),length(S,L1),
+             not((subCreciente(X,S1),length(S1,L2),S1\= S,L2 > L1)).
+%fibonacci(-X)
+fibonacci(X):- desde(0,TO), esFibonacci(TO,X).
+
+%esFibonacci(+X,-S)
+esFibonacci(0,0).
+esFibonacci(1,1).
+esFibonacci(X,R):- X > 1, Z is X -1, Y is X -2, esFibonacci(Z,T),
+                 esFibonacci(Y,Q), R is Q + T.
+
+%desde(+X,?Y)
+desde(X,X).
+desde(X,Y):- var(Y),N is X +1, desde(N,Y).
+
+No es reversible dado que, desde genera infinitamente resultados, luego aunque el valor pasado si fuera de la secuencia de Fibonacci el programa devolveria True pero seguiria
+haciendo backtracking  en desde infinitamente y eventualmente se colgaria por lo tanto todo el programa no es reversible.
