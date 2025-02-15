@@ -1,0 +1,18 @@
+%caminoDesde(+P,-C)
+caminoDesde((A,B),C):- desde(0,N),generoPosiciones((A,B),N,C).
+
+%generoPosiciones(+P,+N,-C)
+generoPosiciones((A,B),0,[(A,B)]).
+generoPosiciones((A,B),N,[(A,B)|R]):- N > 0, Z is N-1, desplazo((A,B),L),
+    								member(X,L),
+                                    generoPosiciones(X,Z,R).
+
+%desplazo(+C,-L)
+desplazo((A,B),L):-W is A+1, X is A -1, Y is B +1, Z is B- 1,
+     			   append([(W,B)],[(X,B)],S1),
+                   append([(A,Y)],[(A,Z)],S2),
+    			   append(S1,S2,L).		
+
+%desde(+X,?Y)
+desde(X,X).
+desde(X,Y):- var(Y), Z is X +1, desde(Z,Y).
