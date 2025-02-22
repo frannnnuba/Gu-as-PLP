@@ -100,7 +100,9 @@ Se toma C el conjunto de clausulas, para pasar una formula a conj de clausulas h
 2 empujar el/los ¬ hacia adentro
 lo que tenemos hasta aca se llama fornma normal negada
 3 Distribuir ∨ sobre ∧
-Formulas en CNF σcnf ::= (κ1 ∧ κ2 ∧ . . . ∧ κn)
+Lo que tenemos hasta aca se llama FORMA NORMAL CONJUNTIVA (conjuncion de disyunciones de literales)
+Formulas en CNF 
+σcnf ::= (κ1 ∧ κ2 ∧ . . . ∧ κn)
 Clausulas κ ::= (ℓ1 ∨ ℓ2 ∨ . . . ∨ ℓm)
 Literales ℓ ::= P | ¬P
 Luego, se hace la resolvente buscando llegar a la clausula vacia lo cual determina ¬t valua insat por lo tanto t es valida
@@ -109,11 +111,12 @@ Resolucion para logica de primer order: la dif con el anterior es que este puede
 seguro termina.
 Los primeros dos pasos son iguales, luego :
 3) es sacar los cuantificadores para todo/ existenciales hacia fuera
-Lo que tenemos hasta aca se conoce como forma normal prenexa
+Lo que tenemos hasta aca se conoce como FORMA NORMAL PRENEXA
 4) Skolemnizar: sacamos los existenciales por testigos. Si el literal solo toma a la variable cuantificada se introduce un
 testigo para reemplazarlo; si el literal dependiera de otras variables libres(del literal) sera entonces una funcion que tome
 como parametros las demas variables que quedaron. Por esto es mejor skolemnizar desde afuera hacia adentro para evitar tener 
-funciones de aridad muy grande
+funciones de aridad muy grande.
+la formula hasta aca esta en FORMA NORMAL DE SKOLEM. σSk ::= ∀X1X2... Xn. τdonde τ representa una form. en NNF libre de cuantificadores.
 LA SKOLEMNIZACION PRESERVA SATISFACIBILIDAD; NO VALIDEZ
 5) Distribuir ∨ sobre ∧
 6) Empujar los cuantificadores hacia adentro y distribuirlos sobre los ∧
