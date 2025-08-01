@@ -26,3 +26,27 @@ desde(X,Y):- var(Y),N is X +1, desde(N,Y).
 
 No es reversible dado que, desde genera infinitamente resultados, luego aunque el valor pasado si fuera de la secuencia de Fibonacci el programa devolveria True pero seguiria
 haciendo backtracking  en desde infinitamente y eventualmente se colgaria por lo tanto todo el programa no es reversible.
+
+
+
+
+%esRotacion(+L,+R)
+esRotacion([],[]).
+esRotacion([X|XS],YS):- length([X|XS],S1),length(YS,S2),S1 = S2,
+                        indiceEnQueEsta(X,YS,0,N), 
+                        esShift2([X|XS],YS,N). 
+
+esShift2(X,Y,N):- correrADerecha(X,N,L), sonIguales(L,Y).
+
+%correrADerecha(+X,+Y,?R)
+correrADerecha(_,0,_).
+correrADerecha([X|XS],N,R):-append(XS,[X],R),Z is N-1,correrADerecha(XS,Z,R).
+
+
+%indiceEnQueEsta(+X,+Y,+S,?N)
+indiceEnQueEsta(X,[X|_],S,S).
+indiceEnQueEsta(X,[Y|YS],S,N):- X \= Y, Z is S+1,indiceEnQueEsta(X,YS,Z,N).
+
+%sonIguales(+X,+Y)
+sonIguales([],[]).
+sonIguales([X|XS],[X|YS]):-sonIguales(XS,YS).
